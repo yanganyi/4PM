@@ -11,14 +11,21 @@ struct MorningView: View {
     @State private var mornings = [Morning(title: "Add your morning tasks here", date: "11/11/24"),
                                   Morning(title: "Slide left to delete or change time frames", date: "11/11/24")]
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(mornings) { Morning in
                 Text(Morning.title)
             }
-            VStack{
-                Text("Hi")
+            .navigationTitle("Morning")
+            .toolbar{
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("") {
+                        print("")
+                    }
+                    
+                    
+                }
             }
-        }.navigationTitle("Morning")
+        }
     }
 }
 #Preview {
