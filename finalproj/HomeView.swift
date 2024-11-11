@@ -1,3 +1,5 @@
+
+
 //
 //  HomeView.swift
 //  finalproj
@@ -13,36 +15,60 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            Text("Hello, World!")
-                .navigationTitle("Planner")
-                .toolbar {
-                                    ToolbarItem(placement: .navigationBarLeading) {
-                                        Button("Edit") {
-                                            print("")
-                                        }
-                                        
-                                        
-                                    }
-                    
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Add Task",systemImage: "plus"){
-                            showingSheet.toggle()
+            VStack {
+                
+                
+                Text("")
+                    .navigationTitle("Planner")
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Edit") {
+                                print("")
+                            }
                             
+                            
+                        }
                         
                         
-                    }.sheet(isPresented: $showingSheet) {
-                        AddView()
-                            .presentationDetents(.init([.medium]))
-                            .presentationDragIndicator(.visible)
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Add Task",systemImage: "plus"){
+                                showingSheet.toggle()
+                                
+                                
+                                
+                            }.sheet(isPresented: $showingSheet) {
+                                AddView()
+                                    .presentationDetents(.init([.medium]))
+                                    .presentationDragIndicator(.visible)
+                            }
+                        }
                     }
-                                }
-        }
-        
-        }
+                
+                Spacer()
+                
+                HStack {
+                    
+                    List {
+                        
+                        Text(Image(systemName: "sun.max"))
+                            .overlay {
+                                NavigationLink(destination: MorningView()) {}
+                                    .opacity(0)
+                            }
+                            .listRowBackground(Color.clear)
+                        
+                    }
+                }
+                
+            }
         }
     }
+}
 
 #Preview {
     HomeView()
 }
+
+
+// Use Drag and Drop on list items
+//
