@@ -2,20 +2,17 @@
 //  ContentView.swift
 //  finalproj
 //
-//  Created by Gay on 11/11/24.
+//  Created by Yang An Yi on 11/11/24.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
+    var body:
+    some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            HomeView()
         }
-        .padding()
     }
 }
 
