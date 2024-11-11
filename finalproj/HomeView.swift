@@ -8,10 +8,38 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @State private var showingSheet = false
+    
     var body: some View {
-        VStack{
-            MorningView()
-            }
+        NavigationStack {
+            Text("Hello, World!")
+                .navigationTitle("Planner")
+                .toolbar {
+                                    ToolbarItem(placement: .navigationBarLeading) {
+                                        Button("Edit") {
+                                            print("")
+                                        }
+                                        
+                                        
+                                    }
+                    
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Add Task",systemImage: "plus"){
+                            showingSheet.toggle()
+                            
+                        
+                        
+                    }.sheet(isPresented: $showingSheet) {
+                        AddView()
+                            .presentationDetents(.init([.medium]))
+                            .presentationDragIndicator(.visible)
+                    }
+                                }
+        }
+        
+        }
         }
     }
 

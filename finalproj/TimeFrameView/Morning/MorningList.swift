@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct Morning {
+struct Morning: Identifiable {
     let id = UUID()
+
     var title: String
     var date: String
 }
