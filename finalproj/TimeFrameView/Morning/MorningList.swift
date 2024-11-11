@@ -11,5 +11,5 @@ struct Morning: Identifiable {
     let id = UUID()
 
     var title: String
-    var date: String
+    var date: String // Link this with the data from home view
 }

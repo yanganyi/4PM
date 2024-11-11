@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MorningView: View {
-    @State private var mornings = [Morning(title: "Add your morning tasks here", date: "11/11/24")]
+    @State private var mornings = [Morning(title: "test", date: " ")]
     var body: some View {
             NavigationStack {
                 List($mornings, editActions: [.all]) { $morning in

@@ -4,15 +4,29 @@
 //
 //  Created by Qi Yang on 11/11/24.
 //
-
 import SwiftUI
 
-struct Evening_View: View {
+struct EveningView: View {
+    @State private var evenings = [Evening(title: "test", date: " ")]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            NavigationStack {
+                List($evenings, editActions: [.all]) { $evening in
+                    VStack(alignment: .leading) {
+                        Text(evening.title)
+                            .font(.headline)
+                        if !evening.date.isEmpty {
+                            Text(evening.date)
+                                .font(.footnote)
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                }
+                .navigationTitle("Evening")
+            }
+        }
     }
-}
 
-#Preview {
-    Evening_View()
-}
+    
+    #Preview {
+        EveningView()
+    }

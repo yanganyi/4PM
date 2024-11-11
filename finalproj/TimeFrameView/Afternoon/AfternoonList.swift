@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-struct AfternoonList: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+struct Afternoon: Identifiable {
+    let id = UUID()
 
-#Preview {
-    AfternoonList()
+    var title: String
+    var date: String // Link this with the data from home view
 }
