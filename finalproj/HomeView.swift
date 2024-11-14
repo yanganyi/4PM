@@ -12,6 +12,7 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var showingSheet = false
+    @State private var maindata = []
     
     var body: some View {
         NavigationStack {
