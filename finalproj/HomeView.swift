@@ -44,20 +44,39 @@ struct HomeView: View {
                         }
                     }
                 
-                Spacer()
-                
-                HStack {
+               
+
                     
-                    List {
+                    ScrollView(.horizontal){
                         
+                        HStack {
+                            
                         Text(Image(systemName: "sun.max"))
                             .overlay {
-                                NavigationLink(destination: MorningView()) {}
+                                NavigationLink(destination: MorningView()) {
+                                    
+                                }
+                                    .opacity(0)
+                            }
+                            .listRowBackground(Color.clear)
+                        
+                        Text(Image(systemName: "sunrise"))
+                            .overlay {
+                                NavigationLink(destination: AfternoonView()) {}
+                                    .opacity(0)
+                            }
+                            .listRowBackground(Color.clear)
+                        
+                        Text(Image(systemName: "sunset"))
+                            .overlay {
+                                NavigationLink(destination: EveningView()) {}
                                     .opacity(0)
                             }
                             .listRowBackground(Color.clear)
                         
                     }
+                    
+                    
                 }
                 
             }
