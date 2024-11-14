@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct MorningView: View {
-    @State private var mornings = [Morning(title: "Add your morning tasks here", date: "11/11/24"),
-                                  Morning(title: "Slide left to delete or change time frames", date: "11/11/24")]
+    @State private var mornings = [Morning(title: "test", date: " ")]
     var body: some View {
-        NavigationStack {
-            List(mornings) { Morning in
-                Text(Morning.title)
-            }
-            .navigationTitle("Morning")
-            .toolbar{
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("") {
-                        print("")
+            NavigationStack {
+                List($mornings, editActions: [.all]) { $morning in
+                    VStack(alignment: .leading) {
+                        Text(morning.title)
+                            .font(.headline)
+                        if !morning.date.isEmpty {
+                            Text(morning.date)
+                                .font(.footnote)
+                                .foregroundStyle(.gray)
+                        }
                     }
-                    
-                    
                 }
+                .navigationTitle("Morning")
             }
         }
     }
-}
-#Preview {
-    MorningView()
-}
+
+    
+    #Preview {
+        MorningView()
+    }

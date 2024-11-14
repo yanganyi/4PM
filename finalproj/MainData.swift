@@ -1,13 +1,6 @@
-//
-//  AfternoonList.swift
-//  finalproj
-//
-//  Created by Qi Yang on 11/11/24.
-//
-
 import SwiftUI
 
-struct Afternoon: Identifiable {
+struct MainData: Identifiable {
     let id = UUID()
 
     var title: String
