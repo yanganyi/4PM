@@ -47,9 +47,9 @@ struct HomeView: View {
                
 
                     
-                    ScrollView(.horizontal){
+                ScrollView(.horizontal){
                         
-                        HStack {
+                        LazyHStack {
                             
                         Text(Image(systemName: "sun.max"))
                             .overlay {
@@ -57,27 +57,43 @@ struct HomeView: View {
                                     
                                 }
                                     .opacity(0)
+                                    
                             }
-                            .listRowBackground(Color.clear)
+                            //.listRowBackground(Color.clear)
+                            .padding()
+                            .background(.white)
+                            .cornerRadius(10)
                         
                         Text(Image(systemName: "sunrise"))
                             .overlay {
-                                NavigationLink(destination: AfternoonView()) {}
+                                NavigationLink(destination: AfternoonView()) {
+                                    
+                                }
                                     .opacity(0)
+                                
                             }
-                            .listRowBackground(Color.clear)
+                            //.listRowBackground(Color.clear)
+                            .padding()
+                            .background(.white)
+                            .cornerRadius(10)
                         
                         Text(Image(systemName: "sunset"))
                             .overlay {
-                                NavigationLink(destination: EveningView()) {}
+                                NavigationLink(destination: EveningView()) {
+                                    
+                                }
                                     .opacity(0)
+                                
                             }
-                            .listRowBackground(Color.clear)
+                            //.listRowBackground(Color.clear)
+                            .padding()
+                            .background(.white)
+                            .cornerRadius(10)
                         
-                    }
+                        }.padding()
                     
                     
-                }
+                }.background(Color(UIColor.systemGroupedBackground))
                 
             }
         }
