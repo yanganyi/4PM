@@ -98,14 +98,14 @@ struct HomeView: View {
                 
             List{
                 
-                Section(isExpanded: $isLateExpanded) {
-                } header: {
-                    Text("Late Tasks")
-                }
-                
                 Section(isExpanded: $isExpanded) {
                 } header: {
                     Text("Current Tasks")
+                }
+                    
+                Section(isExpanded: $isLateExpanded) {
+                } header: {
+                    Text("Late Tasks")
                 }
                 
                 Section(isExpanded: $isAllExpanded) {
