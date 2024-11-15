@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var authorizationStatus: UNAuthorizationStatus?
     
     var body: some View {
+        HomeView()
         VStack {
 //            Image(.)
 //                .resizable()
