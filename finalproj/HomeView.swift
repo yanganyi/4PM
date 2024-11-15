@@ -1,5 +1,3 @@
-
-
 //
 //  HomeView.swift
 //  finalproj
@@ -12,7 +10,8 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var showingSheet = false
-    @State private var maindata = []
+    @State private var todos = [TaskData]()
+ 
     
     var body: some View {
         NavigationStack {
@@ -22,6 +21,7 @@ struct HomeView: View {
                 Text("")
                     .navigationTitle("Planner")
                     .toolbar {
+                        
                         ToolbarItem(placement: .navigationBarLeading) {
                             Button("Edit") {
                                 print("")
@@ -38,7 +38,7 @@ struct HomeView: View {
                                 
                                 
                             }.sheet(isPresented: $showingSheet) {
-                                AddView()
+                                AddView(sourceArray: $todos)
                                     .presentationDetents(.init([.medium]))
                                     .presentationDragIndicator(.visible)
                             }
@@ -48,53 +48,59 @@ struct HomeView: View {
                
 
                     
-                ScrollView(.horizontal){
+                ScrollView(.horizontal,showsIndicators: false){
                         
                         LazyHStack {
                             
-                        Text(Image(systemName: "sun.max"))
-                            .overlay {
-                                NavigationLink(destination: MorningView()) {
-                                    
-                                }
-                                    .opacity(0)
-                                    
-                            }
+                            NavigationLink(destination: MorningView()) {
+                            Text(Image(systemName: "sun.max"))
+                                    .foregroundStyle(.black)
+                                                }
                             //.listRowBackground(Color.clear)
                             .padding()
-                            .background(.white)
+                            .background(.gray)
                             .cornerRadius(10)
+
+                            
                         
-                        Text(Image(systemName: "sunrise"))
-                            .overlay {
-                                NavigationLink(destination: AfternoonView()) {
-                                    
-                                }
-                                    .opacity(0)
-                                
-                            }
+                            NavigationLink(destination: MorningView()) {
+                            Text(Image(systemName: "sunrise"))
+                                    .foregroundStyle(.black)
+                                                }
                             //.listRowBackground(Color.clear)
                             .padding()
-                            .background(.white)
+                            .background(.gray)
                             .cornerRadius(10)
-                        
-                        Text(Image(systemName: "sunset"))
-                            .overlay {
-                                NavigationLink(destination: EveningView()) {
-                                    
-                                }
-                                    .opacity(0)
-                                
-                            }
+                            
+                            NavigationLink(destination: EveningView()) {
+                            Text(Image(systemName: "sunset"))
+                                    .foregroundStyle(.black)
+                                                }
                             //.listRowBackground(Color.clear)
                             .padding()
-                            .background(.white)
+                            .background(.gray)
                             .cornerRadius(10)
+
                         
                         }.padding()
                     
                     
-                }.background(Color(UIColor.systemGroupedBackground))
+                }
+                    .frame(height:100)
+                
+                List{
+                    ForEach(todos, id: \.id) { task in
+                         
+                             Text("\(task.taskname)")
+                        
+                    }
+                    
+                    
+                }
+                
+                NavigationLink(destination: AfternoonView()){
+                                        
+                                    }
                 
             }
         }
@@ -104,7 +110,6 @@ struct HomeView: View {
 #Preview {
     HomeView()
 }
-
 
 // Use Drag and Drop on list items
 //
