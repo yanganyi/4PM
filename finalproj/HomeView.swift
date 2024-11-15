@@ -11,6 +11,9 @@ struct HomeView: View {
     
     @State private var showingSheet = false
     @State private var todos = [TaskData]()
+    @State private var isExpanded = false
+    @State private var isAllExpanded = false
+    @State private var isLateExpanded = false
  
     
     var body: some View {
@@ -23,11 +26,7 @@ struct HomeView: View {
                     .toolbar {
                         
                         ToolbarItem(placement: .navigationBarLeading) {
-                            Button("Edit") {
-                                print("")
-                            }
-                            
-                            
+                            EditButton()
                         }
                         
                         
@@ -55,12 +54,13 @@ struct HomeView: View {
                             NavigationLink(destination: MorningView()) {
                             Text(Image(systemName: "sun.max"))
                                     .foregroundStyle(.black)
+                                    .font(.system(size: 49))
                                                 }
                             //.listRowBackground(Color.clear)
                             .padding()
                             .background(.yellow)
                             .cornerRadius(10)
-                            .font(.system(size: 45))
+                            
                             
 
                             
@@ -68,18 +68,19 @@ struct HomeView: View {
                             NavigationLink(destination: MorningView()) {
                             Text(Image(systemName: "sunrise"))
                                     .foregroundStyle(.black)
+                                    .font(.system(size: 45))
                                                 }
                             //.listRowBackground(Color.clear)
                             .padding()
                             .background(.orange)
                             .cornerRadius(10)
-                            .font(.system(size: 45))
+                            
                             
                             NavigationLink(destination: EveningView()) {
                             Text(Image(systemName: "sunset"))
                                     .foregroundStyle(.black)
                                                 }
-                            //.listRowBackground(Color.clear)
+                            
                             .padding()
                             .background(.blue)
                             .cornerRadius(10)
@@ -87,27 +88,53 @@ struct HomeView: View {
 
                         
                         }.padding()
+                
                     
                     
                 }
-                    .frame(height:100)
+                    .frame(height:160)
+                    
                 
-                List{
+            List{
+                
+                Section(isExpanded: $isExpanded) {
+                } header: {
+                    Text("Current Tasks")
+                }
+                    
+                Section(isExpanded: $isLateExpanded) {
+                } header: {
+                    Text("Late Tasks")
+                }
+                
+                Section(isExpanded: $isAllExpanded) {
+                    
+                    
                     ForEach(todos, id: \.id) { task in
-                         
-                             Text("\(task.taskname)")
-                        
-                    }
-                    
-                    
+                             
+                                 Text("\(task.taskname)")
+                            
+                        }.onDelete { indexSet in
+                            todos.remove(atOffsets: indexSet)
+                            }
+                } header: {
+                   Text("Completed tasks")
                 }
                 
-                NavigationLink(destination: AfternoonView()){
-                                        
-                                    }
+                
+                
+                    
+                    
+            }
+            .listStyle(.sidebar)
+                
+                
                 
             //}
+            
         }
+        
+        
     }
 }
 
