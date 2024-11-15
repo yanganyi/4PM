@@ -58,8 +58,10 @@ struct HomeView: View {
                                                 }
                             //.listRowBackground(Color.clear)
                             .padding()
-                            .background(.gray)
+                            .background(.yellow)
                             .cornerRadius(10)
+                            .font(.system(size: 45))
+                            
 
                             
                         
@@ -69,8 +71,9 @@ struct HomeView: View {
                                                 }
                             //.listRowBackground(Color.clear)
                             .padding()
-                            .background(.gray)
+                            .background(.orange)
                             .cornerRadius(10)
+                            .font(.system(size: 45))
                             
                             NavigationLink(destination: EveningView()) {
                             Text(Image(systemName: "sunset"))
@@ -78,8 +81,9 @@ struct HomeView: View {
                                                 }
                             //.listRowBackground(Color.clear)
                             .padding()
-                            .background(.gray)
+                            .background(.blue)
                             .cornerRadius(10)
+                            .font(.system(size: 45))
 
                         
                         }.padding()
