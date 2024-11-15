@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var isExpanded = false
     @State private var isAllExpanded = false
     @State private var isLateExpanded = false
+    
  
     
     var body: some View {
@@ -112,7 +113,14 @@ struct HomeView: View {
                     
                     ForEach(todos, id: \.id) { task in
                              
-                                 Text("\(task.taskname)")
+                                
+                        VStack(alignment: .leading) {
+                            Text("\(task.taskname)")
+                                            .font(.headline)
+                            Text("\(task.date)")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                    }
                             
                         }.onDelete { indexSet in
                             todos.remove(atOffsets: indexSet)
@@ -133,6 +141,7 @@ struct HomeView: View {
             //}
             
         }
+        
         
         
     }
