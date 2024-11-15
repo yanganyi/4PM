@@ -48,7 +48,7 @@ struct HomeView: View {
                
 
                     
-                ScrollView(.horizontal,showsIndicators: false){
+                //ScrollView(.horizontal,showsIndicators: false){
                         
                         LazyHStack {
                             
@@ -102,7 +102,7 @@ struct HomeView: View {
                                         
                                     }
                 
-            }
+            //}
         }
     }
 }
