@@ -10,56 +10,48 @@ import UserNotifications
 
 struct ContentView: View {
     let center = UNUserNotificationCenter.current()
+    
     @State private var authorizationStatus: UNAuthorizationStatus?
+    
     var body: some View {
         VStack {
-            if authorizationStatus == .authorized {
-                HomeView()
-            } else {
-                Button("Request Notification Permission") {
-                    Task {
-                        do {
-                            try await center.requestAuthorization(options: [.alert, .sound, .badge])
-                            let settings = await center.notificationSettings()
-                            authorizationStatus = settings.authorizationStatus
-                        } catch {
-//                            it there is erros fix them here
+//            Image(.)
+//                .resizable()
+//                .scaledToFit()
+//                .clipShape(.rect(cornerRadius: 16))
+//                .padding()
+            
+            if authorizationStatus == .authorized || authorizationStatus == .provisional {
+                Button("Planning reminder") {
+                    let content = UNMutableNotificationContent()
+                    content.title = "Daily Reminder"
+                    content.body = "Plan your day now"
+                    content.sound = .default
+                    
+                    let identifier = UUID().uuidString
+                    var date = DateComponents()
+                    date.hour = 10
+                    date.minute = 26
+                    
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+                    
+                    center.add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)) { error in
+                        if let error = error {
+                            print("Error scheduling notification: \(error)")
+                        } else {
+                            print("Notification scheduled successfully")
                         }
                     }
-                }
-                .padding()
-                
-                if authorizationStatus == .denied {
-                    Text("Notifications are denied. Please enable them in settings.")
-                        .foregroundColor(.red)
                 }
             }
         }
         .task {
             let settings = await center.notificationSettings()
             authorizationStatus = settings.authorizationStatus
-            if authorizationStatus == .authorized {
-                scheduleDailyNotification()
-            }
-        }
-    }
-    private func scheduleDailyNotification() {
-        let content = UNMutableNotificationContent()
-        content.title = "Time to plan your day"
-        content.body = "Don't forget to plan your tasks for the day!"
-        content.sound = .default
-        var dateComponents = DateComponents()
-        dateComponents.hour = 14
-        dateComponents.minute = 32
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let request = UNNotificationRequest(identifier: "DailyPlanNotification", content: content, trigger: trigger)
-        center.add(request) { error in
-            if let error = error {
-                print("Error scheduling notification: \(error.localizedDescription)")
-            }
         }
     }
 }
+
 
 
 
