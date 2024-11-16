@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct AfternoonView: View {
-    @State private var afternoons = [Afternoon(title: "test", date: " ")]
+    @State private var afternoons = [Afternoon]()
     var body: some View {
             NavigationStack {
                 List($afternoons, editActions: [.all]) { $afternoon in
                     VStack(alignment: .leading) {
-                        Text(afternoon.title)
+                        Text(afternoon.taskname)
                             .font(.headline)
-                        if !afternoon.date.isEmpty {
-                            Text(afternoon.date)
-                                .font(.footnote)
-                                .foregroundStyle(.gray)
-                        }
+                        Text("\(afternoon.date.formatted(date:.abbreviated, time: .omitted))")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
                     }
                 }
                 .navigationTitle("Afternoon")

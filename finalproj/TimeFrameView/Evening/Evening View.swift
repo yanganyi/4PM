@@ -7,18 +7,16 @@
 import SwiftUI
 
 struct EveningView: View {
-    @State private var evenings = [Evening(title: "test", date: " ")]
+    @State private var evenings = [Evening]()
     var body: some View {
             NavigationStack {
                 List($evenings, editActions: [.all]) { $evening in
                     VStack(alignment: .leading) {
-                        Text(evening.title)
+                        Text(evening.taskname)
                             .font(.headline)
-                        if !evening.date.isEmpty {
-                            Text(evening.date)
-                                .font(.footnote)
-                                .foregroundStyle(.gray)
-                        }
+                        Text("\(evening.date.formatted(date:.abbreviated, time: .omitted))")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
                     }
                 }
                 .navigationTitle("Evening")

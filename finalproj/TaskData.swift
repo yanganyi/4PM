@@ -5,26 +5,23 @@
 //  Created by T Krobot on 14/11/24.
 //
 
+
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct TaskData: Identifiable, Codable {
-    
-    
+struct TaskData: Identifiable, Codable, Transferable {
     var id = UUID()
-
     var taskname: String
     var date = Date()
-    
-    
-//    return .data { TaskData in
-//                try? JSONEncoder().encode(TaskData)
-//            }
-    
+
+  
+    static var transferRepresentation: some TransferRepresentation {
+      
+        CodableRepresentation(contentType: .taskData)
+    }
 }
 
 
-
-
-
-
+extension UTType {
+    static let taskData = UTType(exportedAs: "com.tkrobot.finalproj.taskdata")
+}

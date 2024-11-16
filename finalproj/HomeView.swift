@@ -12,6 +12,8 @@ struct HomeView: View {
     @State private var showingSheet = false
     @State private var todos = [TaskData]()
     @State private var mourning = [Morning]()
+    @State private var afternoon = [Afternoon]()
+    @State private var evening = [Evening]()
     @State private var isExpanded = true
     @State private var isAllExpanded = true
     @State private var isLateExpanded = true
@@ -48,15 +50,13 @@ struct HomeView: View {
                 
                
 
-                    
-                //ScrollView(.horizontal,showsIndicators: false){
                         
                         LazyHStack {
                             
                             NavigationLink(destination: MorningView()) {
-                            Text(Image(systemName: "sun.max"))
+                            Text(Image(systemName: "sunrise"))
                                     .foregroundStyle(.black)
-                                    .font(.system(size: 49))
+                                    .font(.system(size: 45))
                                                 }
                             //.listRowBackground(Color.clear)
                             .padding()
@@ -66,16 +66,27 @@ struct HomeView: View {
                             
 
                             
-                        
-                            NavigationLink(destination: MorningView()) {
-                            Text(Image(systemName: "sunrise"))
-                                    .foregroundStyle(.black)
-                                    .font(.system(size: 45))
-                                                }
-                            //.listRowBackground(Color.clear)
-                            .padding()
-                            .background(.orange)
-                            .cornerRadius(10)
+                            ZStack{
+                                NavigationLink(destination: MorningView()) {
+                                    Text(Image(systemName: "sun.max"))
+                                        .foregroundStyle(.black)
+                                        .font(.system(size: 49))
+                                        
+                                    
+                                }
+                                //.listRowBackground(Color.clear)
+                                .padding()
+                                .background(.orange)
+                                .cornerRadius(10)
+                                
+                            }.dropDestination(for: Afternoon.self) { items, destination in
+                                
+                                
+                                afternoon.append(contentsOf: items)
+                                
+                                return true
+                                
+                            }
                             
                             
                             NavigationLink(destination: EveningView()) {
@@ -129,14 +140,14 @@ struct HomeView: View {
                                           
                                             
                         }
-                        //    .draggable(task)
+                            .draggable(task)
                         
                             
                         }.onDelete { indexSet in
                             todos.remove(atOffsets: indexSet)
                             }
                 } header: {
-                   Text("Completed tasks")
+                   Text("All tasks")
                         .bold()
                 }
                 

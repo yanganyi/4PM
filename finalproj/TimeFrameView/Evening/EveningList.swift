@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
-struct Evening: Identifiable {
-    let id = UUID()
+struct Evening: Identifiable, Codable, Transferable {
+    var id = UUID()
+    var taskname: String
+    var date = Date()
 
-    var title: String
-    var date: String // Link this with the data from home view
+  
+    static var transferRepresentation: some TransferRepresentation {
+      
+        CodableRepresentation(contentType: .taskData)
+    }
 }
+
