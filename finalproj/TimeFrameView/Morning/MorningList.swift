@@ -10,6 +10,6 @@ import SwiftUI
 struct Morning: Identifiable {
     let id = UUID()
 
-    var title: String
-    var date: String // Link this with the data from home view
+    var taskname: String
+    var date = Date() // Link this with the data from home view
 }

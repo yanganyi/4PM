@@ -11,9 +11,10 @@ struct HomeView: View {
     
     @State private var showingSheet = false
     @State private var todos = [TaskData]()
-    @State private var isExpanded = false
-    @State private var isAllExpanded = false
-    @State private var isLateExpanded = false
+    @State private var mourning = [Morning]()
+    @State private var isExpanded = true
+    @State private var isAllExpanded = true
+    @State private var isLateExpanded = true
     
  
     
@@ -24,26 +25,26 @@ struct HomeView: View {
                 
                 Text("")
                     .navigationTitle("Planner")
-                    .toolbar {
-                        
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            EditButton()
-                        }
-                        
-                        
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button("Add Task",systemImage: "plus"){
-                                showingSheet.toggle()
-                                
-                                
-                                
-                            }.sheet(isPresented: $showingSheet) {
-                                AddView(sourceArray: $todos)
-                                    .presentationDetents(.init([.medium]))
-                                    .presentationDragIndicator(.visible)
-                            }
-                        }
-                    }
+//                    .toolbar {
+//                        
+//                        ToolbarItem(placement: .navigationBarLeading) {
+//                            EditButton()
+//                        }
+//                        
+//                        
+//                        ToolbarItem(placement: .navigationBarTrailing) {
+//                            Button("Add Task",systemImage: "plus"){
+//                                showingSheet.toggle()
+//                                
+//                                
+//                                
+//                            }.sheet(isPresented: $showingSheet) {
+//                                AddView(sourceArray: $todos)
+//                                    .presentationDetents(.init([.medium]))
+//                                    .presentationDragIndicator(.visible)
+//                            }
+//                        }
+//                    }
                 
                
 
@@ -100,12 +101,15 @@ struct HomeView: View {
                 
                 Section(isExpanded: $isExpanded) {
                 } header: {
+                    
                     Text("Current Tasks")
+                        .bold()
                 }
                     
                 Section(isExpanded: $isLateExpanded) {
                 } header: {
                     Text("Late Tasks")
+                        .bold()
                 }
                 
                 Section(isExpanded: $isAllExpanded) {
@@ -117,16 +121,23 @@ struct HomeView: View {
                         VStack(alignment: .leading) {
                             Text("\(task.taskname)")
                                             .font(.headline)
-                            Text("\(task.date)")
+                            
+                                            
+                            Text("\(task.date.formatted(date:.abbreviated, time: .omitted))")
                                             .font(.subheadline)
                                             .foregroundColor(.gray)
-                                    }
+                                          
+                                            
+                        }
+                        //    .draggable(task)
+                        
                             
                         }.onDelete { indexSet in
                             todos.remove(atOffsets: indexSet)
                             }
                 } header: {
                    Text("Completed tasks")
+                        .bold()
                 }
                 
                 
@@ -135,6 +146,7 @@ struct HomeView: View {
                     
             }
             .listStyle(.sidebar)
+            
                 
                 
                 

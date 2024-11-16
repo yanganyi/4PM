@@ -12,14 +12,6 @@ struct AddView: View {
     @State private var date = Date()
     @Environment(\.dismiss) var dismiss
     @Binding var sourceArray: [TaskData]
-    let dateRange: ClosedRange<Date> = {
-        let calendar = Calendar.current
-        let startComponents = DateComponents(year: 2024, month: 1, day: 1)
-        let endComponents = DateComponents(year: 3050, month: 12, day: 31, hour: 23, minute: 59, second: 59)
-        return calendar.date(from:startComponents)!
-            ...
-            calendar.date(from:endComponents)!
-    }()
 
     var body: some View {
         NavigationView {
@@ -29,9 +21,7 @@ struct AddView: View {
                         
                     DatePicker(
                             "Date",
-                             selection: $date,
-                             in: dateRange,
-                             displayedComponents: [.date, .hourAndMinute]
+                             selection: $date
                         )
 
                     

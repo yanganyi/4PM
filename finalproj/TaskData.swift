@@ -6,10 +6,25 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
-struct TaskData: Identifiable {
-    let id = UUID()
+struct TaskData: Identifiable, Codable {
+    
+    
+    var id = UUID()
 
     var taskname: String
     var date = Date()
+    
+    
+//    return .data { TaskData in
+//                try? JSONEncoder().encode(TaskData)
+//            }
+    
 }
+
+
+
+
+
+
