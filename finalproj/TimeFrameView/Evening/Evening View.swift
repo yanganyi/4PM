@@ -14,7 +14,7 @@ struct EveningView: View {
                 VStack(alignment: .leading) {
                     Text(evening.taskname)
                         .font(.headline)
-                    Text("(evening.date.formatted(date:.abbreviated, time: .omitted))")
+                    Text("\(evening.date.formatted(date:.abbreviated, time: .omitted))")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
