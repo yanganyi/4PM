@@ -25,26 +25,26 @@ struct HomeView: View {
                 
                 Text("")
                     .navigationTitle("Planner")
-//                    .toolbar {
-//                        
-//                        ToolbarItem(placement: .navigationBarLeading) {
-//                            EditButton()
-//                        }
-//                        
-//                        
-//                        ToolbarItem(placement: .navigationBarTrailing) {
-//                            Button("Add Task",systemImage: "plus"){
-//                                showingSheet.toggle()
-//                                
-//                                
-//                                
-//                            }.sheet(isPresented: $showingSheet) {
-//                                AddView(sourceArray: $todos)
-//                                    .presentationDetents(.init([.medium]))
-//                                    .presentationDragIndicator(.visible)
-//                            }
-//                        }
-//                    }
+                    .toolbar {
+                        
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            EditButton()
+                        }
+                        
+                        
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Add Task",systemImage: "plus"){
+                                showingSheet.toggle()
+                                
+                                
+                                
+                            }.sheet(isPresented: $showingSheet) {
+                                AddView(sourceArray: $todos)
+                                    .presentationDetents(.init([.medium]))
+                                    .presentationDragIndicator(.visible)
+                            }
+                        }
+                    }
                 
                
 
