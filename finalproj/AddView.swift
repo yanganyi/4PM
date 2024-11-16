@@ -11,51 +11,43 @@ struct AddView: View {
     @State private var taskname: String = ""
     @State private var date = Date()
     @Environment(\.dismiss) var dismiss
-    @Binding var sourceArray: [TaskData]
-
+    
+    @Environment(TaskDataManager.self) private var taskDataManager
+    
     var body: some View {
         NavigationView {
             VStack{
                 List{
-                    Section {
-                        TextField("Task name", text: $taskname)
+                    TextField("Task name", text: $taskname)
+                    
+                    DatePicker(
+                        "Date",
+                        selection: $date
+                    )
+                    
+                    
+                    Button(action: {
+                        let todo = TaskData(taskname: taskname, date: date, timeFrame: .none)
+                        taskDataManager.tasks.append(todo)
                         
-                        DatePicker(
-                            "Date",
-                            selection: $date
-                        )
+                        dismiss()
                         
-                    }
-
-                    Section {
-                        Button(action: {
-                            let todo = TaskData(taskname: taskname, date: date)
-                            sourceArray.append(todo)
-                            
-                            dismiss()
-                            
-                        }) {
-                            Text("Save")
-                        }.navigationTitle("Add task")
-                        
-                        
-                        Button("Cancel", role: .destructive) {
-                            dismiss()
-                        }
+                    }) {
+                        Text("Save")
+                    }.navigationTitle("Add task")
+                    
+                    
+                    Button("Cancel", role: .destructive) {
+                        dismiss()
                     }
                     
-                        
                     
-                    }
-                
                     
-                
                 }
+                
+                
+                
             }
         }
-}
-
-#Preview {
-@Previewable @State var todos: [TaskData] = []
-AddView(sourceArray: $todos)
+    }
 }

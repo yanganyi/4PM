@@ -8,24 +8,19 @@
 import SwiftUI
 
 struct AfternoonView: View {
-    @State private var afternoons = [Afternoon]()
+    @State var afternoon: [TaskData]
     var body: some View {
-            NavigationStack {
-                List($afternoons, editActions: [.all]) { $afternoon in
-                    VStack(alignment: .leading) {
-                        Text(afternoon.taskname)
-                            .font(.headline)
-                        Text("\(afternoon.date.formatted(date:.abbreviated, time: .omitted))")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                    }
+        NavigationStack {
+            List($afternoon, editActions: [.all]) { $afternoon in
+                VStack(alignment: .leading) {
+                    Text(afternoon.taskname)
+                        .font(.headline)
+                    Text("\(afternoon.date.formatted(date:.abbreviated, time: .omitted))")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
                 }
-                .navigationTitle("Afternoon")
             }
+            .navigationTitle("Afternoon")
         }
     }
-
-    
-    #Preview {
-        AfternoonView()
-    }
+}
