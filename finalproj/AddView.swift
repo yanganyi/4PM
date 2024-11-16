@@ -17,27 +17,31 @@ struct AddView: View {
         NavigationView {
             VStack{
                 List{
-                    TextField("Task name", text: $taskname)
+                    Section {
+                        TextField("Task name", text: $taskname)
                         
-                    DatePicker(
+                        DatePicker(
                             "Date",
-                             selection: $date
+                            selection: $date
                         )
+                        
+                    }
 
-                    
-                    Button(action: {
-                        let todo = TaskData(taskname: taskname, date: date)
-                        sourceArray.append(todo)
+                    Section {
+                        Button(action: {
+                            let todo = TaskData(taskname: taskname, date: date)
+                            sourceArray.append(todo)
+                            
+                            dismiss()
+                            
+                        }) {
+                            Text("Save")
+                        }.navigationTitle("Add task")
                         
-                        dismiss()
                         
-                    }) {
-                        Text("Save")
-                    }.navigationTitle("Add task")
-                    
-                    
-                    Button("Cancel", role: .destructive) {
-                    dismiss()
+                        Button("Cancel", role: .destructive) {
+                            dismiss()
+                        }
                     }
                     
                         
