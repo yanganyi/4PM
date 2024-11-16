@@ -52,22 +52,29 @@ struct HomeView: View {
 
                         
                         LazyHStack {
-                            
-                            NavigationLink(destination: MorningView()) {
-                            Text(Image(systemName: "sunrise"))
-                                    .foregroundStyle(.black)
-                                    .font(.system(size: 45))
-                                                }
-                            //.listRowBackground(Color.clear)
-                            .padding()
-                            .background(.yellow)
-                            .cornerRadius(10)
-                            
+                            ZStack{
+                                NavigationLink(destination: MorningView()) {
+                                    Text(Image(systemName: "sunrise"))
+                                        .foregroundStyle(.black)
+                                        .font(.system(size: 45))
+                                }
+                                //.listRowBackground(Color.clear)
+                                .padding()
+                                .background(.yellow)
+                                .cornerRadius(10)
+                            }.dropDestination(for: Morning.self) { items, destination in
+                                
+                                
+                                mourning.append(contentsOf: items)
+                                
+                                return true
+                                
+                            }
                             
 
                             
                             ZStack{
-                                NavigationLink(destination: MorningView()) {
+                                NavigationLink(destination: AfternoonView()) {
                                     Text(Image(systemName: "sun.max"))
                                         .foregroundStyle(.black)
                                         .font(.system(size: 49))
@@ -88,16 +95,25 @@ struct HomeView: View {
                                 
                             }
                             
-                            
-                            NavigationLink(destination: EveningView()) {
-                            Text(Image(systemName: "sunset"))
-                                    .foregroundStyle(.black)
-                                                }
-                            
-                            .padding()
-                            .background(.blue)
-                            .cornerRadius(10)
-                            .font(.system(size: 45))
+                            ZStack{
+                                NavigationLink(destination: EveningView()) {
+                                    Text(Image(systemName: "sunset"))
+                                        .foregroundStyle(.black)
+                                }
+                                
+                                .padding()
+                                .background(.blue)
+                                .cornerRadius(10)
+                                .font(.system(size: 45))
+                                
+                            }.dropDestination(for: Evening.self) { items, destination in
+                                
+                                
+                                evening.append(contentsOf: items)
+                                
+                                return true
+                                
+                            }
 
                         
                         }.padding()
