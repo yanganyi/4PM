@@ -27,8 +27,8 @@ struct ContentView: View {
                     
                     let identifier = UUID().uuidString
                     var date = DateComponents()
-                    date.hour = 14
-                    date.minute = 15
+                    date.hour = 15
+                    date.minute = 19
                     print(date)
                     let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
                     
