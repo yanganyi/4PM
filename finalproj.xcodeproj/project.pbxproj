@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		D9289CA52CE82E4C006A487B /* Exceptions for "finalproj" folder in "finalproj" target */ = {
+		436606752CE86DC200742454 /* Exceptions for "finalproj" folder in "finalproj" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +43,7 @@
 		73D0566F2CE19F4C00D7BD13 /* finalproj */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				D9289CA52CE82E4C006A487B /* Exceptions for "finalproj" folder in "finalproj" target */,
+				436606752CE86DC200742454 /* Exceptions for "finalproj" folder in "finalproj" target */,
 			);
 			path = finalproj;
 			sourceTree = "<group>";
@@ -411,7 +411,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"finalproj/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = finalproj/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -440,7 +439,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"finalproj/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = finalproj/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -15,15 +15,11 @@ struct ContentView: View {
     
     var body: some View {
         HomeView()
-        VStack {
-//            Image(.)
-//                .resizable()
-//                .scaledToFit()
-//                .clipShape(.rect(cornerRadius: 16))
-//                .padding()
-            
-            if authorizationStatus == .authorized || authorizationStatus == .provisional {
-                Button("Planning reminder") {
+            .task {
+                let settings = await center.notificationSettings()
+                authorizationStatus = settings.authorizationStatus
+                
+                if authorizationStatus == .authorized || authorizationStatus == .provisional {
                     let content = UNMutableNotificationContent()
                     content.title = "Daily Reminder"
                     content.body = "Plan your day now"
@@ -31,9 +27,9 @@ struct ContentView: View {
                     
                     let identifier = UUID().uuidString
                     var date = DateComponents()
-                    date.hour = 10
-                    date.minute = 26
-                    
+                    date.hour = 14
+                    date.minute = 15
+                    print(date)
                     let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
                     
                     center.add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)) { error in
@@ -45,11 +41,6 @@ struct ContentView: View {
                     }
                 }
             }
-        }
-        .task {
-            let settings = await center.notificationSettings()
-            authorizationStatus = settings.authorizationStatus
-        }
     }
 }
 
