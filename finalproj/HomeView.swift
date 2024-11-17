@@ -66,19 +66,31 @@ struct HomeView: View {
                 LazyHStack {
                     ZStack{
                         NavigationLink(destination: TaskView(timeFrame: .morning)) {
-                            Text(Image(systemName: "sunrise"))
-                                .foregroundStyle(.black)
-                                .font(.system(size: 45))
+                            VStack{
+                                Text(Image(systemName: "sunrise"))
+                                    .foregroundStyle(.black)
+                                    .font(.system(size: 45))
+                                
+                                Text("\(taskManager.tasks.filter { $0.timeFrame == .morning }.count)")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 5)
+                                    .padding(.trailing, 4)
+                                
+                            }
+                            //.listRowBackground(Color.clear)
                         }
-                        //.listRowBackground(Color.clear)
                         .padding()
+                        .frame(width: 110, height: 100, alignment: .center)
                         .background(.yellow)
                         .cornerRadius(10)
-                    }.dropDestination(for: TaskData.self) { items, destination in
+                    }
+                    .dropDestination(for: TaskData.self) { items, destination in
                         
                         for item in items {
                             if let index = taskManager.tasks.firstIndex(where: { $0.id == item.id }) {
                                 taskManager.tasks[index].timeFrame = .morning
+                                
                             }
                         }
                         
@@ -88,16 +100,25 @@ struct HomeView: View {
                     
                     
                     
+                    
                     ZStack{
                         NavigationLink(destination: TaskView(timeFrame: .afternoon)) {
-                            Text(Image(systemName: "sun.max"))
-                                .foregroundStyle(.black)
-                                .font(.system(size: 49))
                             
-                            
+                            VStack{
+                                Text(Image(systemName: "sun.max"))
+                                    .foregroundStyle(.black)
+                                    .font(.system(size: 45))
+                                
+                                Text("\(taskManager.tasks.filter { $0.timeFrame == .afternoon }.count)")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 5)
+                                    .padding(.trailing, 4)
+                            }
                         }
                         //.listRowBackground(Color.clear)
                         .padding()
+                        .frame(width: 110, height: 100, alignment: .center)
                         .background(.orange)
                         .cornerRadius(10)
                         
@@ -116,11 +137,24 @@ struct HomeView: View {
                     
                     ZStack{
                         NavigationLink(destination: TaskView(timeFrame: .evening)) {
-                            Text(Image(systemName: "sunset"))
-                                .foregroundStyle(.black)
+                            
+                            VStack{
+                                
+                                
+                                Text(Image(systemName: "sunset"))
+                                    .foregroundStyle(.black)
+                                
+                                Text("\(taskManager.tasks.filter { $0.timeFrame == .evening }.count)")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 5)
+                                    .padding(.trailing, 4)
+                            }
+                            
                         }
                         
                         .padding()
+                        .frame(width: 110, height: 100, alignment: .center)
                         .background(.blue)
                         .cornerRadius(10)
                         .font(.system(size: 45))
@@ -168,6 +202,8 @@ struct HomeView: View {
                             .draggable(task)
                             
                             
+                        }.onDelete { indexSet in
+                            taskManager.tasks.remove(atOffsets: indexSet)
                         }
                     }
                 } header: {
@@ -194,6 +230,8 @@ struct HomeView: View {
                         .draggable(task)
                         
                         
+                    }.onDelete { indexSet in
+                        taskManager.tasks.remove(atOffsets: indexSet)
                     }
                 } header: {
                     Text("Late Tasks")
@@ -251,5 +289,3 @@ struct HomeView: View {
     HomeView()
 }
 
-// Use Drag and Drop on list items
-//
