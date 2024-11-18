@@ -21,7 +21,7 @@ struct AddView: View {
                     TextField("Task name", text: $taskname)
                     
                     DatePicker(
-                        "Date",
+                        "Due Date",
                         selection: $date
                     )
                     

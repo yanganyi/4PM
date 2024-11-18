@@ -22,7 +22,7 @@ struct HomeView: View {
         if let hours = Int(hoursInString) {
             if hours < 12 {
                 return .morning
-            } else if hours < 17 {
+            } else if hours < 18 {
                 return .afternoon
             } else {
                 return .evening
